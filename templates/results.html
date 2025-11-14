@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+  <h3>📊 Top Results for "{{ keyword }}" in r/{{ subreddit }}</h3>
+  
+  {% if posts %}
+    <div style="margin-top: 1.5rem;">
+      {% for p in posts %}
+        <div class="post-card">
+          <div class="post-title">{{ p.title }}</div>
+          <div class="post-meta">
+            <span class="score">▲ {{ p.score }}</span>
+            <span style="margin: 0 0.5rem;">·</span>
+            <span>💬 {{ p.num_comments }} comments</span>
+            <span style="margin: 0 0.5rem;">·</span>
+            <span>👤 {{ p.author }}</span>
+          </div>
+          <div class="actions">
+            <a href="{{ url_for('post_detail') }}?permalink={{ p.permalink }}" class="btn">🎯 Select Post</a>
+            <a href="https://www.reddit.com{{ p.permalink }}" target="_blank" class="btn btn-secondary">🔗 Open on Reddit</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p style="color: #718096; text-align: center; padding: 2rem;">No results found. Please try different keywords.</p>
+  {% endif %}
+</div>
+
+<a href="{{ url_for('index') }}" class="back-link">← Back to Home</a>
+{% endblock %}

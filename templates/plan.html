@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+  <h3>✅ Execution Plan Generated</h3>
+  <p style="color: #718096; margin-bottom: 1.5rem;">{{ title }}</p>
+  
+  <div class="actions">
+    <button id="copyBtn">📋 Copy Markdown</button>
+    <button id="pdfBtn">📄 Download PDF</button>
+  </div>
+  
+  <h4>📊 Plan Preview</h4>
+  <div id="mdPreview" class="markdown"></div>
+  
+  <details style="margin-top: 2rem;">
+    <summary style="cursor: pointer; font-weight: 600; color: #667eea; padding: 0.5rem 0;">View Raw Markdown</summary>
+    <pre id="mdRaw" class="markdown" style="margin-top: 1rem;">{{ plan_md }}</pre>
+  </details>
+</div>
+
+<a href="{{ url_for('index') }}" class="back-link">← Back to Home</a>
+<script>
+  const md = `{{ plan_md | replace('`','\\`') | replace('\n','\\n') | replace('\r','') }}`;
+  const preview = document.getElementById('mdPreview');
+  preview.innerHTML = marked.parse(md);
+</script>
+{% endblock %}

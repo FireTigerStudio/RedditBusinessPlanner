@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reddit Pain Point Planner - AI-Powered Business Opportunity Discovery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: #1a202c;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    
+    header {
+      text-align: center;
+      color: white;
+      margin-bottom: 3rem;
+      padding: 2rem 0;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .subtitle {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      font-weight: 400;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin-bottom: 2rem;
+    }
+    
+    .alert {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      color: #856404;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #2d3748;
+      font-size: 0.95rem;
+    }
+    
+    input[type="text"] {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+    }
+    
+    button, .btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 0.875rem 2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      font-family: inherit;
+    }
+    
+    button:hover, .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    }
+    
+    .btn-secondary {
+      background: #718096;
+      color: white;
+    }
+    
+    .btn-secondary:hover {
+      background: #4a5568;
+      box-shadow: 0 10px 20px rgba(113, 128, 150, 0.3);
+    }
+    
+    .actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    
+    .post-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+      transition: all 0.3s;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .post-card:hover {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+    
+    .post-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2d3748;
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+    
+    .post-meta {
+      color: #718096;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    
+    .score {
+      color: #667eea;
+      font-weight: 700;
+    }
+    
+    pre {
+      white-space: pre-wrap;
+      background: #f7fafc;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      overflow-x: auto;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    
+    .markdown {
+      background: #f7fafc;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    
+    h3 {
+      color: #2d3748;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+    
+    h4 {
+      color: #2d3748;
+      font-size: 1.2rem;
+      margin: 1.5rem 0 1rem;
+      font-weight: 600;
+    }
+    
+    .privacy-note {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+      color: #2d3748;
+      border-left: 4px solid #667eea;
+    }
+    
+    .privacy-note strong {
+      color: #667eea;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎯 Reddit Pain Point Planner</h1>
+      <p class="subtitle">Discover Reddit Business Opportunities, AI-Generated Execution Plans</p>
+    </header>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="alert">
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

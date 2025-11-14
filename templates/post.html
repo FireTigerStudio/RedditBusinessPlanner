@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+  <h3>📝 {{ title }}</h3>
+  
+  {% if selftext %}
+    <div style="margin: 1.5rem 0;">
+      <h4>Post Content</h4>
+      <pre>{{ selftext }}</pre>
+    </div>
+  {% else %}
+    <div style="background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 1rem; margin: 1.5rem 0; color: #856404;">
+      ⚠️ This post has no text content. If it's a link post, you can still generate a plan based on the title, but the results may be limited.
+    </div>
+  {% endif %}
+
+  <form method="post" action="{{ url_for('generate_plan') }}" style="margin-top: 2rem;" id="generateForm">
+    <input type="hidden" name="title" value="{{ title }}">
+    <input type="hidden" name="content" value="{{ selftext }}">
+    <input type="hidden" name="permalink" value="{{ permalink }}">
+    <input type="hidden" name="subreddit" value="{{ subreddit }}">
+    <button type="submit" id="generateBtn">✨ Generate Execution Plan</button>
+  </form>
+  
+  <div id="loadingMsg" style="display: none; margin-top: 1.5rem; padding: 1rem; background: #e6f3ff; border: 1px solid #667eea; border-radius: 8px; color: #2d3748;">
+    <p style="margin: 0; font-weight: 600;">⏳ Generating execution plan...</p>
+    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem; color: #718096;">This may take 30-120 seconds, please be patient. AI is analyzing the post content and generating a detailed plan.</p>
+  </div>
+</div>
+
+<a href="{{ url_for('index') }}" class="back-link">← Back to Home</a>
+
+<script>
+  document.getElementById('generateForm').addEventListener('submit', function(e) {
+    const btn = document.getElementById('generateBtn');
+    const loading = document.getElementById('loadingMsg');
+    
+    btn.disabled = true;
+    btn.style.opacity = '0.6';
+    btn.style.cursor = 'not-allowed';
+    btn.textContent = '⏳ Generating...';
+    
+    loading.style.display = 'block';
+  });
+</script>
+{% endblock %}

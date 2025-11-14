@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+  <h3>🔍 Search Reddit Pain Point Posts</h3>
+  <form method="post" action="{{ url_for('search') }}">
+    <div class="grid">
+      <div class="form-group">
+        <label for="subreddit">Enter Subreddit</label>
+        <input type="text" id="subreddit" name="subreddit" placeholder="e.g., Entrepreneur" required>
+      </div>
+      <div class="form-group">
+        <label for="keyword">Enter Keyword</label>
+        <input type="text" id="keyword" name="keyword" placeholder="e.g., problem, pain point" required>
+      </div>
+    </div>
+    <button type="submit">🚀 Start Search</button>
+  </form>
+</div>
+
+<div class="card">
+  <h3>💡 How It Works</h3>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 1.5rem;">
+    <div>
+      <h4 style="color: #667eea; margin-top: 0;">1️⃣ Search Reddit</h4>
+      <p style="color: #718096; font-size: 0.95rem;">Enter target subreddit and keyword to find high-upvoted pain point posts</p>
+    </div>
+    <div>
+      <h4 style="color: #667eea; margin-top: 0;">2️⃣ AI Analysis</h4>
+      <p style="color: #718096; font-size: 0.95rem;">After selecting a post, Mistral AI analyzes pain points, target users, and business opportunities</p>
+    </div>
+    <div>
+      <h4 style="color: #667eea; margin-top: 0;">3️⃣ Generate Plan</h4>
+      <p style="color: #718096; font-size: 0.95rem;">Get a detailed execution plan with validation experiments, supporting copy and PDF download</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

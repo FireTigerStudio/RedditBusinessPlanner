@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.DS_Store
+
+# Envs
+.venv/
+.env
+
+# App runtime files
+usage.json
+
+# VSCode / IDE
+.vscode/
+.idea/
